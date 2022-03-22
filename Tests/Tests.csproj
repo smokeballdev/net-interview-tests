@@ -50,9 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="WhenBuyingBottles.cs" />
+    <Compile Include="WhenExpandingTemplates.cs" />
     <Compile Include="WhenFindingMissingNumber.cs" />
     <Compile Include="WhenFindingModeCharacter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WhenGeneratingSecretSantaList.cs" />
     <Compile Include="WhenIdentifyingPalindromes.cs" />
     <Compile Include="WhenReplacingNumbersWithFizzBuzz.cs" />
   </ItemGroup>
