@@ -1,7 +1,7 @@
-﻿using Core;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Linq;
+using Core;
+using NUnit.Framework;
 
 namespace Tests
 {
