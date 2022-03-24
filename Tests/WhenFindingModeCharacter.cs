@@ -8,6 +8,7 @@ namespace Tests
         [TestCase("a", 'a')]
         [TestCase("aa", 'a')]
         [TestCase("abb", 'b')]
+        [TestCase("Character", 'c')]
         public void ShouldReturnModeCharacter(string text, char mode)
         {
             Assert.AreEqual(mode, ModeCharacterFinder.Find(text));
