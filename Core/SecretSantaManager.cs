@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Core
 {
@@ -12,7 +14,37 @@ namespace Core
         /// * it’s random
         public static IEnumerable<(string Sender, string Receiver)> GenerateSecretSantaList(IEnumerable<string> names)
         {
-            return null;
+            var random = new Random();
+            var senders = names.ToList();
+
+            if (senders.Count < 2)
+            {
+                yield break;
+            }
+
+            var receivers = new List<string>(senders);
+
+            while (senders.Count > 0)
+            {
+                var count = senders.Count;
+                if (count == 1)
+                {
+                    yield return (senders[0], receivers[0]);
+                    yield break;
+                }
+                var i = random.Next(0, count);
+                var sender = senders[i];
+                var j = random.Next(0, count);
+                while (j == i)
+                {
+                    j = random.Next(0, count);
+                }
+
+                var receiver = receivers[j];
+                senders.RemoveAt(i);
+                receivers.RemoveAt(j);
+                yield return (sender, receiver);
+            }
         }
     }
 }

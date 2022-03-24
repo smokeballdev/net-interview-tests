@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Core
 {
@@ -15,7 +16,8 @@ namespace Core
         /// <returns>FizzBuzz sequence.</returns>
         public static IEnumerable<string> Generate(int start, int end)
         {
-            return null;
+            return Enumerable.Range(start, end - start + 1).Select(i =>
+                i % 15 == 0 ? "FizzBuzz" : i % 3 == 0 ? "Fizz" : i % 5 == 0 ? "Buzz" : i.ToString());
         }
     }
 }

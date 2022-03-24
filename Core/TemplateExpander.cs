@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Core
 {
@@ -20,7 +22,8 @@ namespace Core
         /// </summary>
         public static string PopulateTemplate(string template, Dictionary<string, object> values)
         {
-            return null;
+            return values.Aggregate(template,
+                (current, pair) => Regex.Replace(current, $"{{{pair.Key}}}", pair.Value.ToString()));
         }
     }
 }

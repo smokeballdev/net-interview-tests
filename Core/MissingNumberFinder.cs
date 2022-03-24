@@ -11,7 +11,23 @@ namespace Core
         /// <returns>The missing number.</returns>
         public static int Find(IEnumerable<int> numbers)
         {
-            return 0;
+            var min = int.MaxValue;
+            var max = int.MinValue;
+            var actualSum = 0;
+            foreach (var number in numbers)
+            {
+                if (min > number) min = number;
+                if (max < number) max = number;
+                actualSum += number;
+            }
+
+            var expectedSum = 0;
+            for (var i = min; i <= max; i++)
+            {
+                expectedSum += i;
+            }
+
+            return expectedSum - actualSum;
         }
     }
 }
