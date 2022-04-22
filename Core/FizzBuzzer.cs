@@ -15,7 +15,26 @@ namespace Core
         /// <returns>FizzBuzz sequence.</returns>
         public static IEnumerable<string> Generate(int start, int end)
         {
-            return null;
+            var result = new List<string>();
+            for (var i = start; i < end; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    result.Add("FizzBuzz");
+                }
+
+                else if (i % 3 == 0)
+                {
+                    result.Add("Fizz");
+                }
+
+                else if (i % 5 == 0)
+                {
+                    result.Add("Buzz");
+                }
+            }
+
+            return result;
         }
     }
 }

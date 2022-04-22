@@ -1,4 +1,7 @@
-﻿namespace Core
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Core
 {
     public static class ModeCharacterFinder
     {
@@ -11,7 +14,21 @@
         /// </summary>
         public static char Find(string text)
         {
-            return char.MinValue;
+            var charCounts = new Dictionary<char, int>();
+            foreach (var c in text)
+            {
+                if (charCounts.ContainsKey(c))
+                {
+                    charCounts[c]++;
+                }
+                else
+                {
+                    charCounts.Add(c, 1);
+                }
+            }
+
+            var highestChar = charCounts.OrderByDescending(pair => pair.Value).First();
+            return highestChar.Key;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Core
 {
@@ -20,7 +21,14 @@ namespace Core
         /// </summary>
         public static string PopulateTemplate(string template, Dictionary<string, object> values)
         {
-            return null;
+            var variableNames = values.Keys.ToList();
+            var variableValues = values.Values.ToList();
+            for (var i = 0; i < values.Count; i++)
+            {
+                template.Replace("{" + variableNames[i] + "}", (string)variableValues[i]);
+            }
+
+            return template;
         }
     }
 }

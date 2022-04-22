@@ -16,7 +16,7 @@ namespace Tests
 
         [TestCase("potato")]
         [TestCase("rice")]
-        [TestCase("1234")]
+        [TestCase("12341")]
         public void ShouldNotIdentifyNonPalindromes(string nonPalindrome)
         {
             Assert.IsFalse(PalindromeIdentifier.IsPalindrome(nonPalindrome));

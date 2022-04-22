@@ -10,7 +10,22 @@
         /// <returns>True if a palindrome.</returns>
         public static bool IsPalindrome(string text)
         {
-            return false;
+            var hasCharacterDifferent = false;
+            for (var startIndex = 0; startIndex < text.Length; startIndex++)
+            {
+                var endIndex = text.Length - 1 - startIndex;
+
+                hasCharacterDifferent = text[startIndex] != text[endIndex];
+            }
+
+            if (hasCharacterDifferent)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

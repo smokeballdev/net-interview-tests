@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Core
 {
@@ -11,7 +13,19 @@ namespace Core
         /// <returns>The missing number.</returns>
         public static int Find(IEnumerable<int> numbers)
         {
-            return 0;
+            var numberList = numbers.ToList();
+            for (var i = 0; i < numberList.Count; i++)
+            {
+                var currentNumber = numberList[i];
+                var nextNumber = numberList[i + 1];
+                var expectedNextNumber = currentNumber + 1;
+                if (expectedNextNumber != nextNumber)
+                {
+                    return expectedNextNumber;
+                }
+            }
+
+            throw new Exception("Missing number not found");
         }
     }
 }
