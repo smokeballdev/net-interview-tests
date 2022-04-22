@@ -21,13 +21,7 @@ namespace Core
                 actualSum += number;
             }
 
-            var expectedSum = 0;
-            for (var i = min; i <= max; i++)
-            {
-                expectedSum += i;
-            }
-
-            return expectedSum - actualSum;
+            return (int)((max - min + 1) / 2d * (min + max)) - actualSum;
         }
     }
 }
