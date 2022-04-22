@@ -1,4 +1,6 @@
-﻿namespace Core
+﻿using System.Collections.Generic;
+
+namespace Core
 {
     internal class SecretSantaManager
     {
@@ -8,5 +10,9 @@
         /// * everybody gives exactly one gift
         /// * no selfies (A → A pairs)
         /// * it’s random
+        public static IEnumerable<(string Sender, string Receiver)> GenerateSecretSantaList(IEnumerable<string> names)
+        {
+            return null;
+        }
     }
 }

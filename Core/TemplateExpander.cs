@@ -18,8 +18,9 @@ namespace Core
         ///     sum → $1000000
         ///     signature → The Prince
         /// </summary>
-        public static void PopulateTemplate(string template, Dictionary<string, object> values)
+        public static string PopulateTemplate(string template, Dictionary<string, object> values)
         {
+            return null;
         }
     }
 }
