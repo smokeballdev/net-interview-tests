@@ -15,6 +15,12 @@ namespace Core
         /// <returns>FizzBuzz sequence.</returns>
         public static IEnumerable<string> Generate(int start, int end)
         {
+            // Bug #1: not using "else" makes number 15 to add "Fizz", "Buzz" and "FizzBuzz" to result.
+            // Bug #2: missing result.Add(i.ToString()) when i can't mod 3, 5 and 15 to 0.
+            // Bug #3: for loop doesn't check the end number.
+            // Improvement #1: first if check mods 3 and 5 already, it doesn't have to be repeated in the 2nd and 3rd if checks.
+            // Improvement #2: code can be shortened to a single "Enumerable.Range" call using the "?:" conditional operator.
+            // Improvement #3: can use "yield return" instead of using a result list.
             var result = new List<string>();
             for (var i = start; i < end; i++)
             {

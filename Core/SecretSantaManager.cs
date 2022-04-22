@@ -13,6 +13,9 @@ namespace Core
         /// 5. it’s random
         public static IEnumerable<(string Sender, string Receiver)> GenerateSecretSantaList(IEnumerable<string> names)
         {
+            // Bug:
+            // The logic tries to cheat by having each person giving gift to the next person, and the last person gives gift to the first person.
+            // It violates rule 1, 4 and 5.
             var secretSantaMessages = new List<(string IChannelSender, string Receiver)>();
             var senders = names.ToList();
             for (var i = 0; i < senders.Count - 1; i++)

@@ -18,10 +18,14 @@
                 var exchangedBottles = currentBottles / 4 + currentCaps / 2;
                 currentBottles = currentBottles % 4 + exchangedBottles;
                 currentCaps = currentCaps % 2 + exchangedBottles;
-                totalBottles = currentBottles + exchangedBottles;
+
+                // BUG: totalBottle here should be "totalBottles + exchangedBottles".
+                totalBottles = totalBottles + exchangedBottles;
             }
 
             return totalBottles;
+
+            // TODO: bonus challenge, write the above iterative logic in recursion.
         }
     }
 }

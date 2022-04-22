@@ -25,6 +25,7 @@ namespace Core
             var variableValues = values.Values.ToList();
             for (var i = 0; i < values.Count; i++)
             {
+                // Bug: the "Replace" call doesn't stored the replaced string.
                 template.Replace("{" + variableNames[i] + "}", (string)variableValues[i]);
             }
 
