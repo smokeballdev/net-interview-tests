@@ -10,16 +10,11 @@
         /// <returns>True if a palindrome.</returns>
         public static bool IsPalindrome(string text)
         {
-            var length = text.Length;
-            var endIndex = length - 1;
+            var length = text.Length / 2;
+            var endIndex = text.Length - 1;
             for (var i = 0; i < length; i++)
             {
                 var j = endIndex - i;
-                if (i >= j)
-                {
-                    break;
-                }
-
                 if (text[i] != text[j])
                 {
                     return false;
