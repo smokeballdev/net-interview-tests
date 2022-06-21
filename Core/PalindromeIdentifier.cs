@@ -14,8 +14,7 @@
             var endIndex = text.Length - 1;
             for (var i = 0; i < length; i++)
             {
-                var j = endIndex - i;
-                if (text[i] != text[j])
+                if (text[i] != text[endIndex - i])
                 {
                     return false;
                 }

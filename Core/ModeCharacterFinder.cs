@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Core
 {
@@ -14,45 +13,36 @@ namespace Core
         /// </summary>
         public static char Find(string text)
         {
-            // Note, it is acceptable to use a Dictionary<char, int> here,
-            // but dictionary does not guarantee the order when looping it
-            // in a for loop.
-            var charCounts = new List<CharacterCount>();
-            foreach (var c in text.ToLower())
+            text = text.ToLower();
+            var textLength = text.Length;
+            var characterMap = new Dictionary<char, (int Index, int Count)>();
+            for (var i = 0; i < textLength; i++)
             {
-                var charCount = charCounts.Find(x => x.Character == c);
-                if (charCount == null)
+                characterMap[text[i]] = characterMap.TryGetValue(text[i], out var stat)
+                    ? (stat.Index, stat.Count + 1)
+                    : (i, 1);
+            }
+
+            var maxCount = 0;
+            var minIndex = textLength;
+            char maxCountMinIndexCharacter = default;
+            foreach (var pair in characterMap)
+            {
+                var (index, count) = pair.Value;
+                if (count > maxCount)
                 {
-                    charCounts.Add(new CharacterCount(c, 1));
+                    minIndex = index;
+                    maxCount = count;
+                    maxCountMinIndexCharacter = pair.Key;
                 }
-                else
+                else if (count == maxCount && index < minIndex)
                 {
-                    charCount.Count++;
+                    minIndex = index;
+                    maxCountMinIndexCharacter = pair.Key;
                 }
             }
 
-            var highCharCount = charCounts[0];
-            foreach (var charCount in charCounts.Skip(1))
-            {
-                if (charCount.Count > highCharCount.Count)
-                {
-                    highCharCount = charCount;
-                }
-            }
-
-            return highCharCount.Character;
-        }
-
-        private class CharacterCount
-        {
-            internal readonly char Character;
-            internal int Count;
-
-            public CharacterCount(char character, int count)
-            {
-                Character = character;
-                Count = count;
-            }
+            return maxCountMinIndexCharacter;
         }
     }
 }
