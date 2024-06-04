@@ -1,34 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿namespace Core;
 
-namespace Core
+public static class ModeCharacterFinder
 {
-    public static class ModeCharacterFinder
+    /// <summary>
+    ///     Returns the character with most occurrences in the text.
+    ///     Casing is ignored and lowercase is returned.
+    ///     If there are multiple characters with the equal highest occurrence,
+    ///     the one that appeared first in the text is returned.
+    ///     https://en.wikipedia.org/wiki/Mode_(statistics)
+    /// </summary>
+    public static char Find(string text)
     {
-        /// <summary>
-        ///     Returns the character with most occurrences in the text.
-        ///     Case is ignored and lowercase is returned.
-        ///     If there are multiple characters with equal highest occurrence,
-        ///     the one that appeared first in the text is returned.
-        ///     https://en.wikipedia.org/wiki/Mode_(statistics)
-        /// </summary>
-        public static char Find(string text)
+        var charCounts = new Dictionary<char, int>();
+        foreach (var c in text)
         {
-            var charCounts = new Dictionary<char, int>();
-            foreach (var c in text)
+            if (charCounts.TryGetValue(c, out var value))
             {
-                if (charCounts.ContainsKey(c))
-                {
-                    charCounts[c]++;
-                }
-                else
-                {
-                    charCounts.Add(c, 1);
-                }
+                charCounts[c] = ++value;
             }
-
-            var highestChar = charCounts.OrderByDescending(pair => pair.Value).First();
-            return highestChar.Key;
+            else
+            {
+                charCounts.Add(c, 1);
+            }
         }
+
+        var highestChar = charCounts.MaxBy(pair => pair.Value);
+        return highestChar.Key;
     }
 }
