@@ -16,23 +16,19 @@ public static class FizzBuzzer
         var result = new List<string>();
         for (var i = start; i < end; i++)
         {
-            switch (i % 3)
+            if (i % 3 == 0 && i % 5 == 0)
             {
-                case 0 when i % 5 == 0:
-                    result.Add("FizzBuzz");
-                    break;
-                case 0:
-                    result.Add("Fizz");
-                    break;
-                default:
-                {
-                    if (i % 5 == 0)
-                    {
-                        result.Add("Buzz");
-                    }
+                result.Add("FizzBuzz");
+            }
 
-                    break;
-                }
+            if (i % 3 == 0)
+            {
+                result.Add("Fizz");
+            }
+
+            if (i % 5 == 0)
+            {
+                result.Add("Buzz");
             }
         }
 
